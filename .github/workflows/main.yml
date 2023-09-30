@@ -1,7 +1,6 @@
 name: Run script and push file
 on:
-  schedule:
-    - cron:  '0 0 * * *' # Runs every day at 12:00 AM IST (6:30 PM UTC)
+  push
 
 jobs:
   build:
