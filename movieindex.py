@@ -140,6 +140,7 @@ html_content = """
     </div>
     <ul>
 """
+lines = text.strip().split("\n")
 
 # Loop through each line and add it to the HTML content with appropriate language and category classes
 for line in lines:
