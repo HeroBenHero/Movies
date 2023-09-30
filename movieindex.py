@@ -18,17 +18,13 @@ main_area = soup.find(id='ipsLayout_mainArea')
 
 text = main_area.get_text()
 
-# Split the output into lines
-lines = text.strip().split("\n")
-
 # Initialize the HTML content
 html_content = """
-
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Movies Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,8 +36,8 @@ html_content = """
             color: #333;
         }
         ul {
-            list-style-type: disc;
-            padding-left: 20px;
+            list-style-type: none; /* Remove list-style-type */
+            padding-left: 0; /* Remove left padding for the list */
         }
         li {
             margin-bottom: 10px;
@@ -58,6 +54,7 @@ html_content = """
             display: flex;
             justify-content: center;
             margin-top: 20px;
+            flex-wrap: wrap; /* Allow buttons to wrap to the next line on smaller screens */
         }
         .button-container button {
             background-color: #007bff;
@@ -72,12 +69,35 @@ html_content = """
         .button-container button:hover {
             background-color: #0056b3;
         }
+
+        /* Style for smaller screens (max-width: 600px) */
+        @media (max-width: 600px) {
+            .button-container {
+                flex-direction: column; /* Stack buttons vertically */
+                align-items: center; /* Center-align buttons */
+            }
+            .button-container button {
+                margin: 5px 0; /* Add margin to separate buttons */
+                width: 100%; /* Make buttons full width */
+            }
+
+            /* Two columns for buttons on smaller screens */
+            .button-container.two-columns {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .button-container.two-columns button {
+                width: 48%; /* Adjust button width for two columns */
+                margin: 5px 0;
+            }
+        }
     </style>
     <script>
         // JavaScript for interactivity
         function showLanguage(language) {
             const listItems = document.querySelectorAll("li");
-            
+
             listItems.forEach(function (item) {
                 if (item.classList.contains(language) || language === "all") {
                     item.style.display = "block";
@@ -89,7 +109,7 @@ html_content = """
 
         function showCategory(category) {
             const listItems = document.querySelectorAll("li");
-            
+
             listItems.forEach(function (item) {
                 if (item.classList.contains(category) || category === "all") {
                     item.style.display = "block";
@@ -102,7 +122,7 @@ html_content = """
 </head>
 <body>
     <h1>Movies Index</h1>
-    <div class="button-container">
+    <div class="button-container two-columns"> <!-- Add class for two columns on smaller screens -->
         <button onclick="showLanguage('all')">All</button>
         <button onclick="showLanguage('tam')">Tamil</button>
         <button onclick="showLanguage('eng')">English</button>
@@ -110,8 +130,6 @@ html_content = """
         <button onclick="showLanguage('tel')">Telugu</button>
         <button onclick="showLanguage('kan')">Kannada</button>
         <button onclick="showLanguage('mal')">Malayalam</button>
-    </div>
-    <div class="button-container">
         <button onclick="showCategory('predvd')">PreDVD</button>
         <button onclick="showCategory('hq')">HQ</button>
         <button onclick="showCategory('hd')">HD</button>
@@ -140,7 +158,7 @@ for line in lines:
         language_class = 'mal'
     else:
         language_class = 'other'
-    
+
     category_class = None
     if 'predvd' in line.lower():
         category_class = 'predvd'
@@ -170,3 +188,5 @@ html_content += """
 # Save the HTML content to a file
 with open("index.html", "w", encoding="utf-8") as html_file:
     html_file.write(html_content)
+
+print("HTML file 'index.html' has been created.")
