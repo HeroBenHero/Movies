@@ -1,0 +1,33 @@
+name: Run script and push file
+on:
+  schedule:
+    - cron:  '0 0 * * *' # Runs every day at 12:00 AM IST (6:30 PM UTC)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:  
+      contents: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+        
+    - name: Run script for Historical Events
+      run: python movieindex.py
+
+    - name: Commit and push
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Update output from movieindex.py"
+        git push
