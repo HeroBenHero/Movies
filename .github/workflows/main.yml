@@ -1,6 +1,7 @@
 name: Run script and push file
 on:
-  push
+  schedule:
+    - cron:  '0 0 * * *' # Runs every day at 12:00 AM IST (6:30 PM UTC)
 
 jobs:
   build:
@@ -22,9 +23,6 @@ jobs:
 
     - name: Move and rename existing HTML files
       run: |
-        mkdir archive
-        mkdir archive/1tamilmv
-        mkdir archive/yts
         mv 1tamilmvlist.html archive/1tamilmv/1tamilmvlist_$(date +%Y%m%d).html
         mv ytslist.html archive/yts/ytslist_$(date +%Y%m%d).html
 
