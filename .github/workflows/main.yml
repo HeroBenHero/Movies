@@ -1,7 +1,6 @@
 name: Run script and push file
 on:
-  schedule:
-    - cron:  '0 0 * * *' # Runs every day at 12:00 AM IST (6:30 PM UTC)
+  push
 
 jobs:
   build:
@@ -21,8 +20,10 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
         
-    - name: Run script for Historical Events
-      run: python movieindex.py
+    - name: Run scripts
+      run: |
+        python 1tamilmvindex.py
+        python ytsindex.py
 
     - name: Commit and push
       run: |
