@@ -187,7 +187,7 @@ html_content += """
 """
 
 # Save the HTML content to a file
-with open("index.html", "w", encoding="utf-8") as html_file:
+with open("1tamilmvlist.html", "w", encoding="utf-8") as html_file:
     html_file.write(html_content)
 
 print("HTML file 'index.html' has been created.")
