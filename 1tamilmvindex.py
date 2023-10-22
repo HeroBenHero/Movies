@@ -177,6 +177,9 @@ for line in lines:
         category_class = 'bluray'
 
     formatted_line = line.strip().replace('[WATCH]', '').replace('[W]', '').replace('-', '')
+    if not formatted_line or "Official Telegram Channel" in formatted_line:
+        continue
+        
     html_content += f"<li class='{language_class} {category_class}'>{formatted_line}</li>"
 
 # Close the HTML structure
