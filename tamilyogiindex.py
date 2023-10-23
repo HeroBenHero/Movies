@@ -28,7 +28,7 @@ urls = [
 ]
 
 # Create an HTML file
-with open('tamilyogi.html', 'w') as html_file:
+with open('tamilyogilist.html', 'w') as html_file:
     html_file.write('<html>')
     html_file.write('<head>')
     html_file.write('<style>')
