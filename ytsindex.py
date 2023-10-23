@@ -111,7 +111,7 @@ while True:
                             <p>Year: {movie['year']}</p>
                             <p>Language: {movie_language}</p>
                             <p>Description: {movie_description}</p>
-                            <img src="{small_cover_image}" alt="Cover Image" class="cover-image">
+                            # <img src="{small_cover_image}" alt="Cover Image" class="cover-image">
                             <p>Torrent Details:<br>{torrent_details}</p>
                         </div>
                     </li>
