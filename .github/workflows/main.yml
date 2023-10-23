@@ -25,13 +25,13 @@ jobs:
       run: |
         mv 1tamilmvlist.html archive/1tamilmv/1tamilmvlist_$(date +%Y%m%d).html
         mv ytslist.html archive/yts/ytslist_$(date +%Y%m%d).html
-        mv tamilyogi.html archive/tamilyogi/tamilyogilist_$(date +%Y%m%d).html
+        mv tamilyogilist.html archive/tamilyogi/tamilyogilist_$(date +%Y%m%d).html
 
     - name: Run scripts
       run: |
         python 1tamilmvindex.py
         python ytsindex.py
-        python tamilyogi.py
+        python tamilyogiindex.py
 
     - name: Commit and push
       run: |
