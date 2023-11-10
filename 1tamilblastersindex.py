@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # URL to extract text from
-url = "https://www.1tamilblasters.cfd/"
+url = "https://www.1tamilblasters.uno/"
 
 # Send a GET request to the URL
 response = requests.get(url)
